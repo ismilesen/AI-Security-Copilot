@@ -1,0 +1,4 @@
+Below are various requirements in setting up our backend:
+fastapi
+uvicorn
+python-multipart

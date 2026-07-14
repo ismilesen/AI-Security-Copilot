@@ -1,0 +1,7 @@
+Jul 15 10:00:01 server sshd[1234]: Failed password for root from 192.168.1.10 port 50001 ssh2
+Jul 15 10:00:02 server sshd[1234]: Failed password for root from 192.168.1.10 port 50002 ssh2
+Jul 15 10:00:03 server sshd[1234]: Failed password for root from 192.168.1.10 port 50003 ssh2
+Jul 15 10:00:04 server sshd[1234]: Failed password for root from 192.168.1.10 port 50004 ssh2
+Jul 15 10:00:05 server sshd[1234]: Failed password for root from 192.168.1.10 port 50005 ssh2
+Jul 15 10:00:06 server sshd[1234]: Failed password for root from 10.0.0.20 port 51001 ssh2
+Jul 15 10:00:07 server sshd[1234]: Failed password for root from 10.0.0.20 port 51002 ssh2

@@ -5,6 +5,7 @@ from app.parsers.log_parser import parse_log
 #from app.detectors.ssh_detector import detect_ssh_bruteforce 
 
 from app.detectors.engine import run_detectors
+from app.parsers.log_parser import parse_authentication_events
 app = FastAPI(
     title = "AI Security Copilot",
     description = "Security log analysis platform",
@@ -32,11 +33,12 @@ async def analyze(file: UploadFile = File(...)):
             detail = "file too large to analyze. Max file size 5 MB"
         )
 
-    detection = run_detectors(parsed)
+    detections = run_detectors(parsed)
     
     return {
-        "filename": parsed.filename,
-        "size": parsed.size,
-        "preview": parsed.text,
-        "detection": detection
-    }
+    "filename": parsed.filename,
+    "size": parsed.size,
+    "preview": parsed.text[:500],
+    "authentication_events": parsed.authentication_events,
+    "detections": detections,
+}

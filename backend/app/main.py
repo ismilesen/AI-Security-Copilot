@@ -1,7 +1,10 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 
 from app.parsers.log_parser import parse_log
-from app.detectors.ssh_detector import detect_ssh_bruteforce 
+#previous import before modular detectors
+#from app.detectors.ssh_detector import detect_ssh_bruteforce 
+
+from app.detectors.engine import run_detectors
 app = FastAPI(
     title = "AI Security Copilot",
     description = "Security log analysis platform",
@@ -29,7 +32,7 @@ async def analyze(file: UploadFile = File(...)):
             detail = "file too large to analyze. Max file size 5 MB"
         )
 
-    detection = detect_ssh_bruteforce(parsed)
+    detection = run_detectors(parsed)
     
     return {
         "filename": parsed.filename,

@@ -1,0 +1,4 @@
+Case 1: 5 failures within 10 seconds
+Expected: detection
+Case 2: 5 failures spread across 5 minutes
+Expected: no detection

@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-
+from datetime import datetime
 
 @dataclass
 class AuthenticationEvent:
-    timestamp: str
+    timestamp: datetime
     username: str
     source_ip: str
     destination_host: str

@@ -2,7 +2,7 @@ from fastapi import UploadFile
 from app.model.parsed_log import ParsedLog
 import re
 from app.model.authentication_event import AuthenticationEvent
-
+from datetime import datetime
 
 FAILED_SSH_PATTERN = re.compile(
     r"^(?P<timestamp>\w{3}\s+\d+\s+\d{2}:\d{2}:\d{2})\s+"
@@ -23,6 +23,13 @@ ACCEPTED_SSH_PATTERN = re.compile(
     r"from\s+(?P<source_ip>\S+)"
 )
 
+def parse_sys_timestamp(value: str) -> datetime:
+    current_year = datetime.now(). year
+    return datetime.strptime(
+        f"{current_year} {value}",
+        "%Y %b %d %H:%M:%S",
+    )
+
 
 def parse_authentication_events(text: str) -> list[AuthenticationEvent]:
     events: list[AuthenticationEvent] = []
@@ -40,7 +47,7 @@ def parse_authentication_events(text: str) -> list[AuthenticationEvent]:
 
         events.append(
             AuthenticationEvent(
-                timestamp=match.group("timestamp"),
+                timestamp=parse_sys_timestamp(match.group("timestamp")),
                 username=match.group("username"),
                 source_ip=match.group("source_ip"),
                 destination_host=match.group("host"),
